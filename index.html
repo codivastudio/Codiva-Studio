@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>CODIVA | Digital Excellence</title>
+    <link rel="icon" type="image/png" href="head logo.png"/>
+    
+    <!-- Font Awesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --black: #08080a;
+            --black-card: #0a0a0c;
+            --white: #f4f3ef;
+            --gray: #9999a3;
+            --gray-dark: #5f5f69;
+            --purple: #7c3aed;
+            --purple-light: #a78bfa;
+            --border: #1a1a1e;
+            --heading: "Montserrat", sans-serif;
+            --body: "Cairo", "Inter", sans-serif;
+
+            --accent-primary: #7c3aed;
+            --accent-secondary: #a78bfa;
+            --bg-card: #0a0a0c;
+            --bg-main: #000000;
+            --text-heading: #ffffff;
+            --text-subheading: #a1a1aa;
+
+            --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            --fast-curve: cubic-bezier(0, 0, 0.2, 1);
+
+            --sat: env(safe-area-inset-top, 0px);
+            --sab: env(safe-area-inset-bottom, 0px);
+            --sal: env(safe-area-inset-left, 0px);
+            --sar: env(safe-area-inset-right, 0px);
+        }
+
+        /* PREVENT HORIZONTAL SCROLL */
+        html, body {
+            max-width: 100vw;
+            overflow-x: hidden !important;
+            margin: 0;
+            padding: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html { 
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            font-family: var(--body);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+            padding-left: var(--sal);
+            padding-right: var(--sar);
+            padding-bottom: var(--sab);
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button, input, textarea, select {
+            font: inherit;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+        }
+
+        .container, .section {
+            width: min(1240px, calc(100% - 40px));
+            margin: auto;
+            padding: clamp(60px, 8vw, 120px) 0;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--white);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        /* ==============================
+           GLOBAL HEADINGS
+        ============================== */
+        .section-label {
+            color: var(--purple-light);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 40px;
+            margin-bottom: clamp(30px, 5vw, 60px);
+        }
+
+        .section-heading h2 {
+            margin-top: 15px;
+            font-family: var(--heading);
+            font-size: clamp(32px, 5vw, 72px);
+            line-height: 1.1;
+            letter-spacing: -.01em;
+            font-weight: 800;
+        }
+
+        .section-heading h2 span {
+            color: var(--purple-light);
+        }
+
+        .section-heading > p {
+            max-width: 400px;
+            color: var(--gray);
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        /* SPECIFIC HEADING FOR SERVICES SECTION */
+        .services-section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 40px;
+            margin-bottom: clamp(30px, 5vw, 60px);
+        }
+
+        .services-section-heading .right-side {
+            text-align: right;
+            direction: rtl;
+        }
+
+        .services-section-heading .right-side h2 {
+            margin-top: 15px;
+            font-family: var(--body);
+            font-size: clamp(32px, 5vw, 72px);
+            line-height: 1.1;
+            font-weight: 800;
+        }
+
+        .services-section-heading .right-side h2 span {
+            color: var(--purple-light);
+        }
+
+        .services-section-heading .left-side-text {
+            max-width: 400px;
+            color: var(--gray);
+            line-height: 1.8;
+            font-size: 14px;
+            text-align: left;
+            direction: ltr;
+        }
+
+        /* Buttons */
+        .btn {
+            min-height: 50px;
+            padding: 0 24px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            will-change: transform;
+            border-radius: 4px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-primary {
+            background: white;
+            color: black !important;
+        }
+
+        .btn-primary:hover {
+            background: var(--purple-light);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,.06);
+        }
+
+        /* Header / Navbar */
+        .top-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 82px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 clamp(20px, 5vw, 40px);
+            border-bottom: 1px solid transparent;
+            transition: background-color 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease;
+            transform: translate3d(0, 0, 0);
+            will-change: background-color, border-color;
+        }
+
+        .top-header.scrolled {
+            background: rgba(8,8,10,.88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-color: var(--border);
+        }
+
+        /* LUXURY THIN BRAND LOGO WITH ATTACHED INVERTED V (A) */
+        .brand-logo {
+            font-family: "Montserrat", sans-serif;
+            font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+            font-weight: 300;
+            letter-spacing: 0.25em;
+            color: var(--white);
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .brand-logo span.inverted-a {
+            display: inline-block;
+            transform: rotate(180deg);
+            color: var(--purple-light);
+            margin-left: -0.1em;
+            line-height: 1;
+        }
+
+        .hamburger-btn {
+            background: transparent;
+            border: none;
+            color: var(--white);
+            font-size: 26px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        /* Sidebar / Drawer */
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(8, 8, 10, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s var(--fast-curve), visibility 0.25s var(--fast-curve);
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sidebar-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: min(340px, 85vw);
+            height: 100vh;
+            background-color: var(--black-card);
+            border-left: 1px solid var(--border);
+            z-index: 2001;
+            display: flex;
+            flex-direction: column;
+            padding: calc(1.5rem + var(--sat)) 1.5rem calc(1.5rem + var(--sab));
+            transform: translate3d(100%, 0, 0);
+            transition: transform 0.28s var(--fast-curve);
+            overflow-y: auto;
+            will-change: transform;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .sidebar-drawer.active {
+            transform: translate3d(0, 0, 0);
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: row-reverse;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .sidebar-close-btn {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: var(--gray);
+            cursor: pointer;
+        }
+
+        .sidebar-brand-statement {
+            text-align: right;
+            padding: 1.25rem 1rem;
+            margin-bottom: 1.5rem;
+            background-color: var(--black);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        .sidebar-tagline {
+            font-family: var(--heading);
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--white);
+            margin-bottom: 0.8rem;
+        }
+
+        .sidebar-tagline .highlight {
+            color: var(--purple-light);
+        }
+
+        .sidebar-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .sidebar-link-item {
+            text-decoration: none;
+            color: var(--white);
+            font-size: 0.95rem;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .sidebar-link-item i {
+            color: var(--purple-light);
+        }
+
+        .sidebar-link-item:hover {
+            background-color: var(--black);
+            color: var(--purple-light);
+        }
+
+        /* ==============================
+           HERO SECTION
+        ============================== */
+        .hero {
+            min-height: 100vh;
+            width: min(1240px, calc(100% - 40px));
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 40px;
+            padding-top: 100px;
+            padding-bottom: 100px;
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--gray);
+            font-size: 10px;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .eyebrow span {
+            width: 7px;
+            height: 7px;
+            background: var(--purple-light);
+            border-radius: 50%;
+            box-shadow: 0 0 18px var(--purple);
+        }
+
+        .hero h1 {
+            font-family: var(--heading);
+            font-size: clamp(48px, 8vw, 120px);
+            line-height: 1.05;
+            letter-spacing: -0.01em;
+            font-weight: 800;
+        }
+
+        .hero h1 span {
+            color: transparent;
+            -webkit-text-stroke: 1.8px rgba(244, 243, 239, 0.9);
+            letter-spacing: 0.02em;
+            display: inline-block;
+        }
+
+        .hero-description {
+            max-width: 500px;
+            margin-top: 25px;
+            color: var(--gray);
+            line-height: 1.8;
+            font-size: 15px;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 35px;
+        }
+
+        /* HERO VISUAL WITH LARGE FLOATING LOGO */
+        .hero-visual {
+            min-height: 420px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .glow {
+            position: absolute;
+            width: clamp(200px, 30vw, 380px);
+            height: clamp(200px, 30vw, 380px);
+            background: var(--purple);
+            filter: blur(140px);
+            opacity: .2;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-orb {
+            width: clamp(240px, 28vw, 360px);
+            height: clamp(240px, 28vw, 360px);
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,.2);
+            box-shadow: 0 30px 100px rgba(0,0,0,.8), 0 0 40px rgba(124, 58, 237, 0.25);
+            animation: floating 7s ease-in-out infinite;
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+
+        .hero-orb img.hero-logo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .floating-card {
+            position: absolute;
+            padding: 10px 14px;
+            background: rgba(17,17,22,.85);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            font-size: 10px;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            border-radius: 4px;
+            animation: floatingCard 5s ease-in-out infinite;
+            z-index: 5;
+            will-change: transform;
+        }
+
+        .floating-card span {
+            color: var(--purple-light);
+            margin-right: 8px;
+            font-weight: 700;
+        }
+
+        .card-one { top: 10%; left: 5%; }
+        .card-two { right: 2%; top: 48%; animation-delay: 1.2s; }
+        .card-three { bottom: 8%; left: 8%; animation-delay: 2.4s; }
+
+        @keyframes floating {
+            0%,100% { transform: translate3d(0, 0, 0); }
+            50% { transform: translate3d(0, -16px, 0); }
+        }
+
+        @keyframes floatingCard {
+            0%,100% { transform: translate3d(0, 0, 0); }
+            50% { transform: translate3d(0, -10px, 0); }
+        }
+
+        /* Statement (OUR APPROACH) */
+        .statement {
+            width: min(1240px, calc(100% - 40px));
+            margin: auto;
+            padding: clamp(80px, 10vw, 140px) 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .statement h2 {
+            max-width: 1100px;
+            margin-top: 25px;
+            font-family: var(--heading);
+            font-size: clamp(32px, 5.5vw, 80px);
+            line-height: 1.1;
+            letter-spacing: -.02em;
+            font-weight: 800;
+        }
+
+        .statement h2 span {
+            color: var(--purple-light);
+        }
+
+        /* ==============================
+           SERVICES GRID
+        ============================== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 270px), 1fr));
+            gap: clamp(1.25rem, 2.5vw, 2rem);
+            direction: rtl;
+            text-align: right;
+        }
+
+        .service-card {
+            background-color: var(--bg-card);
+            padding: clamp(1.75rem, 3vw, 2.5rem) clamp(1.25rem, 2vw, 1.75rem);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 12px 30px rgba(124, 58, 237, 0.12);
+        }
+
+        .service-card.highlight-card {
+            border-color: rgba(124, 58, 237, 0.5);
+            background: linear-gradient(180deg, rgba(124, 58, 237, 0.05) 0%, var(--bg-card) 100%);
+        }
+
+        .service-card.highlight-card:hover {
+            border-color: var(--accent-secondary);
+        }
+
+        .service-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .service-icon {
+            font-size: clamp(2rem, 3vw, 2.4rem);
+            color: var(--accent-secondary);
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .service-card h3 {
+            font-size: clamp(1.15rem, 2vw, 1.35rem);
+            margin-bottom: 0.75rem;
+            font-family: inherit;
+            font-weight: 700;
+        }
+
+        .service-desc {
+            font-size: 0.92rem;
+            color: var(--text-subheading);
+            line-height: 1.6;
+            min-height: 3.5rem;
+        }
+
+        .service-divider {
+            height: 1px;
+            background-color: var(--border);
+            margin: 1.25rem 0;
+            border: none;
+        }
+
+        .includes-title {
+            font-size: 0.85rem;
+            color: var(--accent-secondary);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .service-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-top: auto;
+        }
+
+        .service-list li {
+            font-size: 0.9rem;
+            color: var(--text-heading);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0;
+        }
+
+        .service-list li i {
+            color: var(--accent-secondary);
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        /* ==============================
+           WORK / PORTFOLIO GRID
+        ============================== */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .project-card {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            display: block;
+            background-color: var(--black-card);
+            transition: var(--transition-smooth);
+            will-change: transform;
+        }
+
+        .project-card:hover {
+            transform: scale(0.99);
+            border-color: rgba(167, 139, 250, 0.4);
+        }
+
+        .project-image-wrapper {
+            width: 100%;
+            height: clamp(300px, 38vw, 480px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+
+        .project-card:hover .project-image-wrapper img {
+            transform: scale(1.05);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(8,8,10,0.92) 0%, rgba(8,8,10,0.3) 50%, rgba(8,8,10,0.1) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: clamp(20px, 4vw, 40px);
+            z-index: 2;
+        }
+
+        .project-overlay span {
+            color: var(--purple-light);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .project-overlay h3 {
+            margin-top: 8px;
+            font-family: var(--heading);
+            font-size: clamp(26px, 3.5vw, 52px);
+            letter-spacing: -.03em;
+            line-height: 1;
+        }
+
+        .project-overlay p {
+            margin-top: 8px;
+            color: var(--gray);
+            font-size: 13px;
+        }
+
+        /* ==============================
+           WHY CODIVA GRID
+        ============================== */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+            gap: clamp(1.25rem, 2.5vw, 2rem);
+        }
+
+        .why-card {
+            background-color: var(--bg-card);
+            padding: clamp(1.75rem, 3vw, 2.25rem);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: var(--transition-smooth);
+            text-align: center;
+            min-height: auto;
+        }
+
+        .why-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-primary);
+            box-shadow: 0 12px 30px rgba(124, 58, 237, 0.12);
+        }
+
+        .why-icon {
+            font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+            color: var(--accent-secondary);
+            margin-bottom: 1rem;
+            margin-top: 0;
+            display: inline-block;
+        }
+
+        .why-card h3 {
+            font-size: clamp(1.1rem, 2vw, 1.25rem);
+            margin-bottom: 0.5rem;
+            margin-top: 0;
+            font-family: inherit;
+        }
+
+        .why-card p {
+            font-size: 0.92rem;
+            color: var(--text-subheading);
+            line-height: 1.5;
+            margin-top: 0;
+        }
+
+        /* About Section */
+        .about-section {
+            display: grid;
+            grid-template-columns: 1fr .8fr;
+            gap: 50px;
+            align-items: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .about-text {
+            max-width: 600px;
+            margin-top: 25px;
+            color: var(--gray);
+            font-size: 15px;
+            line-height: 1.9;
+            direction: rtl;
+            text-align: right;
+        }
+
+        .about-mark {
+            min-height: clamp(280px, 30vw, 420px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: radial-gradient(circle, rgba(124,58,237,.14), transparent 60%);
+            padding: 30px;
+        }
+
+        .about-logo-orb {
+            width: clamp(140px, 18vw, 220px);
+            height: clamp(140px, 18vw, 220px);
+            border-radius: 50%;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(124, 58, 237, 0.2);
+        }
+
+        .about-logo-orb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+
+        .about-mark p {
+            color: var(--gray);
+            font-size: 10px;
+            letter-spacing: .3em;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+
+        /* Contact Section (CENTERED ALIGNMENT) */
+        .contact-section {
+            border-top: 1px solid var(--border);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: clamp(40px, 5vw, 60px);
+        }
+
+        .contact-section .section-heading {
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .social-icons-wrapper {
+            display: flex;
+            gap: 1.25rem;
+            margin-top: 35px;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .social-circle-link {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background-color: var(--black-card);
+            border: 1px solid var(--border);
+            color: var(--purple-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            transition: var(--transition-smooth);
+            will-change: transform;
+        }
+
+        .social-circle-link:hover {
+            background-color: var(--white);
+            color: var(--black);
+            transform: translate3d(0, -5px, 0);
+        }
+
+        /* Compact Inline Footer */
+        .footer-inline {
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border);
+            color: var(--gray-dark);
+            font-size: 10px;
+            text-align: center;
+            width: 100%;
+        }
+
+        /* Responsive Media Queries */
+        @media (max-width: 1024px) {
+            .hero { grid-template-columns: 1fr; padding-top: 110px; }
+            .hero-visual { min-height: 360px; }
+            .services-grid, .why-grid { grid-template-columns: repeat(2, 1fr); }
+            .about-section { grid-template-columns: 1fr; gap: 30px; }
+        }
+
+        @media (max-width: 768px) {
+            .container, .section, .statement, .hero { width: calc(100% - 30px); }
+            
+            .hero {
+                text-align: center;
+            }
+            .hero-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .hero-description {
+                text-align: center;
+            }
+            .eyebrow {
+                justify-content: center;
+            }
+
+            .hero-buttons { flex-direction: column; width: 100%; }
+            .btn { width: 100%; }
+            .hero-visual { min-height: 300px; }
+            .services-grid, .work-grid, .why-grid { grid-template-columns: 1fr; }
+            .section-heading { flex-direction: column; align-items: flex-start; gap: 15px; }
+            
+            /* CENTER ALIGNMENT & LARGER TEXT FOR STATEMENT SECTION ON MOBILE */
+            .statement {
+                text-align: center;
+            }
+            .statement h2 {
+                font-size: clamp(38px, 9vw, 54px);
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            /* CENTER ALIGNMENT FOR WHY CODIVA HEADING ON MOBILE */
+            #why-codiva .section-heading {
+                align-items: center;
+                text-align: center;
+                width: 100%;
+            }
+
+            /* CENTER ALIGNMENT & LARGER TEXT FOR SERVICES HEADING ON MOBILE */
+            .services-section-heading { 
+                flex-direction: column-reverse; 
+                align-items: center; 
+                text-align: center;
+                gap: 20px; 
+                width: 100%;
+            }
+            .services-section-heading .right-side { 
+                text-align: center; 
+                direction: rtl; 
+                width: 100%;
+            }
+            .services-section-heading .right-side h2 {
+                font-size: clamp(38px, 8vw, 54px);
+            }
+            .services-section-heading .left-side-text {
+                text-align: center;
+                direction: ltr;
+                width: 100%;
+                font-size: 15px;
+            }
+
+            .about-text {
+                text-align: center;
+            }
+
+            .contact-section .section-heading { align-items: center; text-align: center; }
+            .card-one { left: 0; }
+            .card-two { right: 0; }
+        }
+
+        @media (max-width: 480px) {
+            .container, .section, .statement, .hero { width: calc(100% - 24px); }
+            .hero-visual { min-height: 260px; }
+            .card-one, .card-two, .card-three { font-size: 8px; padding: 6px 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="top-header" id="navbar">
+        <a href="#hero" class="brand-logo" aria-label="CODIVA Home">
+            CODIV<span class="inverted-a">V</span>
+        </a>
+        <button class="hamburger-btn" id="sidebarToggleBtn" aria-label="Open Navigation Menu">
+            ☰
+        </button>
+    </header>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <aside class="sidebar-drawer" id="sidebarDrawer" aria-label="قائمة التنقل">
+        <div class="sidebar-header">
+            <a href="#hero" class="brand-logo">
+                CODIV<span class="inverted-a">V</span>
+            </a>
+            <button class="sidebar-close-btn" id="closeSidebarBtn" aria-label="إغلاق القائمة">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-brand-statement">
+            <div class="sidebar-tagline">
+                <span class="highlight">BUILD.</span> DESIGN. <span class="highlight">ELEVATE.</span>
+            </div>
+            <a href="#contact" class="btn btn-primary" style="width: 100%;">START YOUR PROJECT</a>
+        </div>
+
+        <div class="sidebar-links">
+            <a href="#hero" class="sidebar-link-item"><i class="fas fa-house"></i> الرئيسية</a>
+            <a href="#services" class="sidebar-link-item"><i class="fas fa-cubes"></i> الخدمات</a>
+            <a href="#portfolio" class="sidebar-link-item"><i class="fas fa-briefcase"></i> أعمالنا</a>
+            <a href="#why-codiva" class="sidebar-link-item"><i class="fas fa-star"></i> لماذا نحن</a>
+            <a href="#about" class="sidebar-link-item"><i class="fas fa-circle-info"></i> من نحن</a>
+            <a href="#contact" class="sidebar-link-item"><i class="fas fa-envelope"></i> اتصل بنا</a>
+        </div>
+    </aside>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <div class="eyebrow">
+                <span></span>
+                Digital Studio
+            </div>
+            <h1>
+                BUILD.<br>
+                <span>DESIGN.</span><br>
+                ELEVATE.
+            </h1>
+            <p class="hero-description">
+                نصمم مواقع إلكترونية وهويات بصرية تساعد مشروعك على الظهور بشكل احترافي وبناء حضور قوي على الإنترنت.
+            </p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">ابدأ مشروعك ↗</a>
+                <a href="#services" class="btn btn-secondary">اكتشف خدماتنا</a>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="glow"></div>
+            <!-- THE ORB CONTAINING LOGO.JFIF -->
+            <div class="hero-orb">
+                <img src="Logo.jfif" alt="CODIVA Big Logo" class="hero-logo-img">
+            </div>
+            <div class="floating-card card-one"><span>01</span>Web</div>
+            <div class="floating-card card-two"><span>02</span>Brand</div>
+            <div class="floating-card card-three"><span>03</span>Design</div>
+        </div>
+    </section>
+
+    <!-- STATEMENT (OUR APPROACH) -->
+    <section class="statement">
+        <p class="section-label">OUR APPROACH</p>
+        <h2>
+            WE DON'T JUST MAKE THINGS <span>LOOK GOOD.</span><br>
+            WE MAKE BRANDS <span>IMPOSSIBLE TO IGNORE.</span>
+        </h2>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section">
+        <div class="services-section-heading">
+            <p class="left-side-text">From initial concept to pixel perfection, we build everything your brand needs to grow.</p>
+            <div class="right-side">
+                <p class="section-label">WHAT WE DO</p>
+                <h2>ماذا <span>نقدم؟</span></h2>
+            </div>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-header">
+                    <i class="fas fa-code service-icon"></i>
+                    <h3>تطوير المواقع الإلكترونية</h3>
+                    <p class="service-desc">مواقع إلكترونية مُصممة للعمل بكفاءة عالية. مواقع حديثة وتفاعلية تهدف لزيادة المبيعات وتحويل الزوار إلى عملاء.</p>
+                </div>
+                <hr class="service-divider">
+                <ul class="service-list">
+                    <li><i class="fas fa-circle-check"></i> صفحات هبوط (Landing Pages)</li>
+                    <li><i class="fas fa-circle-check"></i> مواقع تعريفية للشركات</li>
+                    <li><i class="fas fa-circle-check"></i> متاجر إلكترونية</li>
+                    <li><i class="fas fa-circle-check"></i> تصميم متوافق مع جميع الشاشات</li>
+                    <li><i class="fas fa-circle-check"></i> رفع واستضافة المواقع</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header">
+                    <i class="fas fa-fingerprint service-icon"></i>
+                    <h3>تصميم الهوية البصرية</h3>
+                    <p class="service-desc">اجعل علامتك التجارية مميزة وسهلة التعرف عليها. نبتكر هويات بصرية تعبر عن جوهر مشروعك قبل أن تنطق بكلمة.</p>
+                </div>
+                <hr class="service-divider">
+                <ul class="service-list">
+                    <li><i class="fas fa-circle-check"></i> تصميم الشعارات (Logo)</li>
+                    <li><i class="fas fa-circle-check"></i> اختيار وتناسق الألوان</li>
+                    <li><i class="fas fa-circle-check"></i> اختيار الخطوط (Typography)</li>
+                    <li><i class="fas fa-circle-check"></i> دليل استرشادي للعلامة التجارية</li>
+                    <li><i class="fas fa-circle-check"></i> العناصر البصرية المساعدة</li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <div class="service-header">
+                    <i class="fas fa-layer-group service-icon"></i>
+                    <h3>التصميم الرقمي</h3>
+                    <p class="service-desc">تصاميم تجذب الانتباه. محتوى بصري إبداعي مصمم خصيصاً للمنصات الرقمية لترك أثر حقيقي ومباشر.</p>
+                </div>
+                <hr class="service-divider">
+                <ul class="service-list">
+                    <li><i class="fas fa-circle-check"></i> تصاميم وسائل التواصل الاجتماعي</li>
+                    <li><i class="fas fa-circle-check"></i> التصاميم الإعلانية</li>
+                    <li><i class="fas fa-circle-check"></i> بطاقات العمل (Business Cards)</li>
+                    <li><i class="fas fa-circle-check"></i> المواد والمطبوعات الترويجية</li>
+                    <li><i class="fas fa-circle-check"></i> الأصول والمواد الرقمية</li>
+                </ul>
+            </div>
+
+            <div class="service-card highlight-card">
+                <div class="service-header">
+                    <i class="fas fa-crown service-icon"></i>
+                    <h3>الباقة الكاملة للعلامة التجارية</h3>
+                    <p class="service-desc">كل ما تحتاجه في مكان واحد وببهوية متكاملة. أساس رقمي شامل للشركات والمشاريع الجاهزة لبناء اسم قوي.</p>
+                </div>
+                <hr class="service-divider">
+                <div class="includes-title">تشمل الباقة:</div>
+                <ul class="service-list">
+                    <li><i class="fas fa-circle-check"></i> الشعار الرسمي</li>
+                    <li><i class="fas fa-circle-check"></i> الهوية البصرية الكلية</li>
+                    <li><i class="fas fa-circle-check"></i> الموقع الإلكتروني</li>
+                    <li><i class="fas fa-circle-check"></i> حزمة وسائل التواصل الاجتماعي</li>
+                    <li><i class="fas fa-circle-check"></i> مستلزمات الأعمال المطبوعة والديجيتال</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORK / PORTFOLIO SECTION -->
+    <section id="portfolio" class="section">
+        <div class="section-heading">
+            <div>
+                <p class="section-label">SELECTED WORK</p>
+                <h2>BUILT TO <span>STAND OUT.</span></h2>
+            </div>
+        </div>
+
+        <div class="work-grid">
+            <!-- PROJECT 1 (ORVÉL) -->
+            <a href="orvel.html" class="project-card">
+                <div class="project-image-wrapper">
+                    <img src="imd 2.png" alt="Orvel Brand Project">
+                    <div class="project-overlay">
+                        <span>Brand Identity</span>
+                        <h3>ORVÉL</h3>
+                        <p>Couture House / High-end visual identity.</p>
+                    </div>
+                </div>
+            </a>
+
+            <!-- PROJECT 2 (FETHI GIFTS) -->
+            <a href="fethi-gifts.html" class="project-card">
+                <div class="project-image-wrapper">
+                    <img src="icon.png" alt="Fethi Gifts Web Project">
+                    <div class="project-overlay">
+                        <span>Web Development</span>
+                        <h3>FETHI GIFTS</h3>
+                        <p>Luxury Floral / Premium gifting experience.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- WHY CODIVA -->
+    <section id="why-codiva" class="section">
+        <div class="section-heading">
+            <div>
+                <p class="section-label">WHY CODIVA</p>
+                <h2>DESIGNED FOR <span>IMPACT.</span></h2>
+            </div>
+        </div>
+
+        <div class="why-grid">
+            <div class="why-card">
+                <i class="fas fa-bullseye why-icon"></i>
+                <h3>Strategy-Driven</h3>
+                <p>Every design decision has a purpose.</p>
+            </div>
+
+            <div class="why-card">
+                <i class="fas fa-gem why-icon"></i>
+                <h3>High Standard</h3>
+                <p>Premium quality in every detail.</p>
+            </div>
+
+            <div class="why-card">
+                <i class="fas fa-wand-magic-sparkles why-icon"></i>
+                <h3>Clean & Modern</h3>
+                <p>No clutter, just strong visual presence.</p>
+            </div>
+
+            <div class="why-card">
+                <i class="fas fa-bolt why-icon"></i>
+                <h3>Digital First</h3>
+                <p>Built for today's web environment.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT CODIVA -->
+    <section id="about" class="section about-section">
+        <div>
+            <p class="section-label">ABOUT CODIVA</p>
+            <h2 class="section-heading" style="margin-bottom: 0;">
+                <span>TURNING IDEAS INTO DIGITAL REALITY.</span>
+            </h2>
+            <p class="about-text">
+                كوديفا (CODIVA) استوديو رقمي مستقل، نبتكر هويات بصرية حديثة، وتجارب ويب متكاملة، وأنظمة تصميم متطورة.<br><br>
+                نجمع بين إبداع التصميم، ودقة التطوير، والحلول الاستراتيجية، لنمنح مشروعك حضورًا قويًا وترك أثرٍ مستدام.
+            </p>
+            <a href="#contact" class="btn btn-primary" style="margin-top: 35px;">لنعمل معًا ←</a>
+        </div>
+
+        <div class="about-mark">
+            <div class="about-logo-orb">
+                <img src="Logo.jfif" alt="CODIVA Logo">
+            </div>
+            <p>CODIVA DIGITAL STUDIO</p>
+        </div>
+    </section>
+
+    <!-- CONTACT (CENTERED WITH INLINE FOOTER) -->
+    <section id="contact" class="section contact-section">
+        <p class="section-label">LET'S TALK</p>
+        <div class="section-heading">
+            <h2>HAVE AN <span>IDEA?</span><br>LET'S BUILD IT.</h2>
+        </div>
+        <p style="color: var(--gray); font-size: 14px;">Tell us what you're planning, and we'll take it from there.</p>
+
+        <div class="social-icons-wrapper">
+            <a href="https://www.instagram.com/codiva.studio" target="_blank" rel="noopener" class="social-circle-link" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/213549169694" target="_blank" rel="noopener" class="social-circle-link" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+
+        <div class="footer-inline">
+            <p>&copy; 2026 CODIVA - Digital Excellence. All rights reserved.</p>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            /* Header Scroll Class */
+            const navbar = document.getElementById("navbar");
+            let ticking = false;
+
+            window.addEventListener("scroll", () => {
+                if (!ticking) {
+                    window.requestAnimationFrame(() => {
+                        if (window.scrollY > 40) {
+                            navbar.classList.add("scrolled");
+                        } else {
+                            navbar.classList.remove("scrolled");
+                        }
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+
+            /* Sidebar Toggle */
+            const DOM = {
+                sidebarToggleBtn: document.getElementById('sidebarToggleBtn'),
+                sidebar: document.getElementById('sidebarDrawer'),
+                overlay: document.getElementById('sidebarOverlay'),
+                closeBtn: document.getElementById('closeSidebarBtn'),
+                navLinks: document.querySelectorAll('a[href^="#"]')
+            };
+
+            const toggleSidebar = (isOpen) => {
+                if (!DOM.sidebar || !DOM.overlay) return;
+                DOM.sidebar.classList.toggle('active', isOpen);
+                DOM.overlay.classList.toggle('active', isOpen);
+                document.body.classList.toggle('menu-open', isOpen);
+            };
+
+            DOM.sidebarToggleBtn?.addEventListener('click', () => toggleSidebar(true));
+            DOM.closeBtn?.addEventListener('click', () => toggleSidebar(false));
+            DOM.overlay?.addEventListener('click', () => toggleSidebar(false));
+
+            DOM.navLinks.forEach(link => {
+                link.addEventListener('click', () => toggleSidebar(false));
+            });
+
+            /* Smooth Parallax on Mouse Move (Desktop Only) */
+            const orb = document.querySelector(".hero-orb");
+            if (orb && window.innerWidth > 992) {
+                let mouseX = 0, mouseY = 0;
+                let currentX = 0, currentY = 0;
+
+                window.addEventListener("mousemove", (e) => {
+                    mouseX = (e.clientX / window.innerWidth - 0.5) * 20;
+                    mouseY = (e.clientY / window.innerHeight - 0.5) * 20;
+                });
+
+                function animateOrb() {
+                    currentX += (mouseX - currentX) * 0.05;
+                    currentY += (mouseY - currentY) * 0.05;
+                    orb.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+                    requestAnimationFrame(animateOrb);
+                }
+                animateOrb();
+            }
+        });
+    </script>
+</body>
+</html>
