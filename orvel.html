@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ORVÉL - Case Study | CODIVA</title>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-main: #000000;
+            --bg-card: #0a0a0c;
+            --bg-surface: #121216;
+            --border-color: #1a1a1e;
+            
+            --text-heading: #ffffff;
+            --text-subheading: #a1a1aa;
+            
+            --accent-primary: #7c3aed;
+            --accent-secondary: #a78bfa;
+            
+            --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            --min-touch-target: 44px;
+
+            --sat: env(safe-area-inset-top, 0px);
+            --sab: env(safe-area-inset-bottom, 0px);
+            --sal: env(safe-area-inset-left, 0px);
+            --sar: env(safe-area-inset-right, 0px);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html { 
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-subheading);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            padding-left: var(--sal);
+            padding-right: var(--sar);
+            padding-bottom: var(--sab);
+        }
+
+        .container {
+            width: min(92%, 1100px);
+            margin: 0 auto;
+            padding: 0 0.5rem;
+        }
+
+        /* Top Header */
+        .top-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: calc(1.2rem + var(--sat)) calc(1.5rem + var(--sar)) 1.2rem calc(1.5rem + var(--sal));
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brand-logo {
+            font-size: 1.4rem;
+            font-weight: 200;
+            letter-spacing: 4px;
+            color: var(--text-heading);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .brand-logo .purple-letter {
+            color: var(--accent-secondary);
+            font-weight: 300;
+        }
+
+        .back-link {
+            color: var(--text-subheading);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition-smooth);
+            min-height: var(--min-touch-target);
+        }
+
+        .back-link:hover {
+            color: var(--accent-secondary);
+        }
+
+        /* Project Hero Header */
+        .project-hero {
+            padding: clamp(7rem, 12vw, 10rem) 0 clamp(2rem, 5vw, 4rem);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-secondary);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .project-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            color: var(--text-heading);
+            letter-spacing: 2px;
+            line-height: 1.1;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-category {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: var(--text-subheading);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Strategy Section */
+        .strategy-section {
+            padding: clamp(3rem, 6vw, 5rem) 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 450px), 1fr));
+            gap: clamp(2rem, 4vw, 3.5rem);
+        }
+
+        .strategy-card h3 {
+            font-size: 1.25rem;
+            color: var(--text-heading);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .strategy-card h3 i {
+            color: var(--accent-secondary);
+            font-size: 1rem;
+        }
+
+        .strategy-card p {
+            font-size: 1.05rem;
+            color: var(--text-subheading);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* Deliverables Showcase Section */
+        .showcase-section {
+            padding: clamp(3.5rem, 8vw, 6rem) 0;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+            gap: clamp(1.5rem, 3vw, 2.5rem);
+        }
+
+        .showcase-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition-smooth);
+        }
+
+        .showcase-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-4px);
+        }
+
+        .showcase-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .showcase-title {
+            font-size: 1.1rem;
+            color: var(--text-heading);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .showcase-icon {
+            color: var(--accent-secondary);
+            font-size: 1.2rem;
+        }
+
+        /* Standardized Box Dimensions */
+        .mockup-display {
+            background-color: var(--bg-surface);
+            border-radius: 10px;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            overflow: hidden;
+        }
+
+        /* Circular Logo */
+        .logo-img {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Palette Swatches */
+        .palette-preview {
+            display: flex;
+            gap: 1.5rem;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .color-swatch {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .swatch-black {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        .swatch-white {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        /* Typography Preview */
+        .typography-preview {
+            text-align: center;
+        }
+
+        .font-serif {
+            font-family: "Didot", "Bodoni MT", serif;
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 0.2rem;
+        }
+
+        .font-sans {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-subheading);
+        }
+
+        /* Horizontal Scroll Gallery for Brand Application & Business Card */
+        .scroll-gallery {
+            display: flex;
+            overflow-x: auto;
+            width: 100%;
+            height: 100%;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 0.4rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-primary) var(--bg-surface);
+        }
+
+        .scroll-gallery::-webkit-scrollbar {
+            height: 5px;
+        }
+
+        .scroll-gallery::-webkit-scrollbar-track {
+            background: var(--bg-surface);
+            border-radius: 4px;
+        }
+
+        .scroll-gallery::-webkit-scrollbar-thumb {
+            background: var(--accent-primary);
+            border-radius: 4px;
+        }
+
+        .scroll-item {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+        }
+
+        /* Website Preview Link & Image */
+        .website-link {
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+        }
+
+        .website-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            transition: var(--transition-smooth);
+        }
+
+        .website-img:hover {
+            transform: scale(1.02);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: clamp(3rem, 6vw, 5rem) 0 clamp(4rem, 8vw, 7rem);
+            text-align: center;
+        }
+
+        .btn-view-project {
+            min-height: var(--min-touch-target);
+            padding: 1rem 2.8rem;
+            border-radius: 50px;
+            background: var(--accent-primary);
+            color: var(--text-heading);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: var(--transition-smooth);
+            box-shadow: 0 4px 25px rgba(124, 58, 237, 0.35);
+        }
+
+        .btn-view-project:hover {
+            background: var(--accent-secondary);
+            color: var(--bg-main);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 35px rgba(167, 139, 250, 0.45);
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0 calc(2rem + var(--sab));
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-subheading);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fixed Header -->
+    <header class="top-header">
+        <a href="index.html" class="brand-logo">
+            CODIV<span class="purple-letter">Λ</span>
+        </a>
+        <a href="index.html#portfolio" class="back-link">
+            <i class="fas fa-arrow-left"></i> Back to Portfolio
+        </a>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Project Hero Header -->
+        <section class="project-hero">
+            <div class="container">
+                <span class="project-label">PROJECT</span>
+                <h1 class="project-title">ORVÉL</h1>
+                <p class="project-category">Fashion / Branding</p>
+            </div>
+        </section>
+
+        <!-- Strategy Section -->
+        <section class="strategy-section">
+            <div class="container">
+                <div class="strategy-grid">
+                    <div class="strategy-card">
+                        <h3><i class="fas fa-bullseye"></i> التحدي (The Challenge)</h3>
+                        <p>ابتكار هوية أزياء فاخرة تجمع بين روح العصر، والحضور الواثق، والأناقة الخالدة</p>
+                    </div>
+                    <div class="strategy-card">
+                        <h3><i class="fas fa-lightbulb"></i> الحل (The Solution)</h3>
+                        <p>قمنا بانشاء هوية بصرية متكاملة ترتكز على البساطة، والتباين، وفن الخطوط الراقية</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deliverables Showcase -->
+        <section class="showcase-section">
+            <div class="container">
+                <div class="showcase-grid">
+                    
+                    <!-- Circular Logo -->
+                    <div class="showcase-card">
+                        <div class="showcase-header">
+                            <span class="showcase-title">Logo</span>
+                            <i class="fas fa-pen-nib showcase-icon"></i>
+                        </div>
+                        <div class="mockup-display">
+                            <img src="orvel logo.png" alt="ORVÉL Logo" class="logo-img">
+                        </div>
+                    </div>
+
+                    <!-- Colors (Black & White) -->
+                    <div class="showcase-card">
+                        <div class="showcase-header">
+                            <span class="showcase-title">Colors</span>
+                            <i class="fas fa-palette showcase-icon"></i>
+                        </div>
+                        <div class="mockup-display">
+                            <div class="palette-preview">
+                                <div class="color-swatch swatch-black">
+                                    <span>BLACK</span>
+                                    <span>#000000</span>
+                                </div>
+                                <div class="color-swatch swatch-white">
+                                    <span>WHITE</span>
+                                    <span>#FFFFFF</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Typography -->
+                    <div class="showcase-card">
+                        <div class="showcase-header">
+                            <span class="showcase-title">Typography</span>
+                            <i class="fas fa-font showcase-icon"></i>
+                        </div>
+                        <div class="mockup-display">
+                            <div class="typography-preview">
+                                <div class="font-serif">Didot Display</div>
+                                <div class="font-sans">Inter / Minimalist Sans</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Business Card -->
+                    <div class="showcase-card">
+                        <div class="showcase-header">
+                            <span class="showcase-title">Business Card</span>
+                            <i class="fas fa-id-card showcase-icon"></i>
+                        </div>
+                        <div class="mockup-display">
+                            <div class="scroll-gallery">
+                                <img src="orvel viti card.png" alt="ORVÉL Business Card Front" class="scroll-item">
+                                <img src="orvel business card.png" alt="ORVÉL Business Card Back" class="scroll-item">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Brand Application -->
+                    <div class="showcase-card">
+                        <div class="showcase-header">
+                            <span class="showcase-title">Brand Application</span>
+                            <i class="fas fa-layer-group showcase-icon"></i>
+                        </div>
+                        <div class="mockup-display">
+                            <div class="scroll-gallery">
+                                <img src="A.png" alt="ORVÉL Brand Application A" class="scroll-item">
+                                <img src="B.png" alt="ORVÉL Brand Application B" class="scroll-item">
+                                <img src="imd 2.png" alt="ORVÉL Brand Application C" class="scroll-item">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Website (2.png) -->
+                    <div class="showcase-card">
+                        <div class="showcase-header">
+                            <span class="showcase-title">Website</span>
+                            <i class="fas fa-laptop showcase-icon"></i>
+                        </div>
+                        <div class="mockup-display">
+                            <a href="https://codivastudio.github.io/Orvel/" target="_blank" rel="noopener" class="website-link">
+                                <img src="2.png" alt="ORVÉL Website Design" class="website-img">
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- View Project CTA -->
+        <section class="cta-section">
+            <div class="container">
+                <a href="https://codivastudio.github.io/Orvel/" class="btn-view-project" target="_blank" rel="noopener">
+                    View Project <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 CODIVA - Digital Excellence. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
